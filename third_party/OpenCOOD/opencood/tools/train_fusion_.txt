@@ -1,0 +1,9 @@
+/opt/miniconda/envs/advCP/bin/python /workspace/AdvCollaborativePerception/third_party/OpenCOOD/opencood/tools/train_fusion_net.py --hypes_yaml /workspace/AdvCollaborativePerception/models/OpenCOOD/pointpillar_v2vnet/config.yaml --init_model_dir /workspace/AdvCollaborativePerception/models/OpenCOOD/pointpillar_V2VAM --model_dir /workspace/AdvCollaborativePerception/third_party/OpenCOOD/opencood/logs/point_pillar_v2vnet_gru_iter2_downsample_2024_10_29_10_41_33
+
+/opt/miniconda/envs/advCP/bin/python /workspace/AdvCollaborativePerception/third_party/OpenCOOD/opencood/tools/train_fusion_net.py --hypes_yaml /workspace/AdvCollaborativePerception/models/OpenCOOD/pointpillar_CoBEVT/config.yaml --init_model_dir /workspace/AdvCollaborativePerception/models/OpenCOOD/pointpillar_V2VAM
+
+/opt/miniconda/envs/advCP/bin/python /workspace/AdvCollaborativePerception/third_party/OpenCOOD/opencood/tools/train_fusion_net.py --hypes_yaml /workspace/AdvCollaborativePerception/models/OpenCOOD/pointpillar_fcooper/config.yaml --init_model_dir /workspace/AdvCollaborativePerception/models/OpenCOOD/pointpillar_V2VAM
+
+/opt/miniconda/envs/advCP/bin/python /workspace/AdvCollaborativePerception/third_party/OpenCOOD/opencood/tools/train_fusion_net.py --hypes_yaml /workspace/AdvCollaborativePerception/third_party/OpenCOOD/opencood/hypes_yaml/point_pillar_v2xvit.yaml --init_model_dir /workspace/AdvCollaborativePerception/models/OpenCOOD/pointpillar_V2VAM
+
+/opt/miniconda/envs/advCP/bin/python /workspace/AdvCollaborativePerception/third_party/OpenCOOD/opencood/tools/train_fusion_net.py --hypes_yaml /workspace/AdvCollaborativePerception/models/OpenCOOD/pointpillar_coalign/config.yaml --init_model_dir /workspace/AdvCollaborativePerception/models/OpenCOOD/pointpillar_V2VAM

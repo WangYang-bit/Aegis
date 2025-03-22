@@ -1,0 +1,107 @@
+iou_threshold: 0.5
+
+ATTACKER:
+  #patch, noise, target_perturbation, naive_perturbation
+  METHOD: "patch"
+  EPSILON: 255
+  ITER_STEP: 10
+  STEP_LR: 0.03
+  ATTACK_CLASS: '0'
+  LR_SCHEDULER: 'plateau'
+  regularization: true
+  regular_parm: 1
+
+defense_params:
+ # defense_method: spatial_temporal, mvp, robosac, robust
+  name: spatial_temporal
+  if_spatial: true
+  if_temporal: true
+  if_mask: false
+  confidence_threshold: 1.0
+  range: [30, 30 , 3]
+  grid_size: 0.4
+  consistent_score_threshold: 0
+
+model:
+  world_model:
+    model: "FeatureTimeSeriesTransformer"
+    condition_frames : &id001 4
+    input_dim: 256
+    embedding_dim: 1024
+    n_head: 8
+    n_layer: [3,3]
+    feature_size: [48, 176]
+    attention_dropout: 0.1
+    residual_dropout: 0.1
+
+    feature_token_size: 2112
+    pose_token_size: 0
+    yaw_token_size: 0
+    total_token_size: 2112
+    anchor_number: 2
+    downsample_factor: 2
+
+    nms_thresh: 0.5
+
+AR_loss:
+  core_method: ["MSE_loss", "point_pillar_loss"]
+  args:
+    cls_weight: 1.0
+    reg: 2.0
+    mse_weight: 0
+    task_weight: 1.0
+
+optimizer:
+  name: "Adam"
+  lr: 0.0001
+  weight_decay: 0.0001
+
+debug: false
+
+data:
+  dataset: "TimeSeriesFeatureDataset"
+  data_dir: "/root/autodl-tmp/OPV2V/fusion_feature"
+  train_dir: "train"
+  val_dir: "val"
+  test_dir: "test"
+  num_workers: 16
+  condition_frames: *id001
+
+visulize: 
+  save_feature: False
+  save_patch: False
+
+train_params:
+  max_epoch: 1
+  batch_size: 1
+  save_freq: 1
+  eval_freq: 1
+  batch_num: 2
+  object_num: 10
+  save_interval: 1
+  init_model_path: "/home/UAP_attack/models/AR"
+
+
+eval_params:
+  attack_mode: spoof
+  apply_attack: true
+  batch_num: 2000
+  object_num: 1
+
+detectors:
+  # - "pointpillar_where2comm"
+  # - "pointpillar_fcooper"
+  - "pointpillar_V2VAM"
+  # - "pointpillar_v2vnet"
+  # - "pointpillar_v2xvit"
+  # - "pointpillar_CoBEVT"
+  # - "pointpillar_late_fusion"
+  - "pointpillar_single_car_large"
+
+
+patch:
+  channel: 384
+  width: 5
+  height: 5
+  name: spoof_V2VAM55_woregular_L10
+  patch_file: /home/UAP_attack/models/patch/spoof_V2VAM55_woregular_L10.pth
