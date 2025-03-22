@@ -614,4 +614,4 @@ if __name__ == "__main__":
     # Print peak memory usage
     # print(
     #     f"Peak memory usage: {torch.cuda.max_memory_allocated(device) / 1024**2:.2f} MB"
-    # )
+    # ) 
